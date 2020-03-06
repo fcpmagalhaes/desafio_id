@@ -1,19 +1,17 @@
 module Api
     module V1
         class TagsController < ApplicationController
-            #Listar todas tags
+            
             def index
                     tags = Tag.order('created_at DESC');
                     render json: {status: 'SUCESS', message: 'Tags carregadas', data:tags}, status: :ok
             end
 
-            #Listar tags passando ID
             def show
                 tag = Tag.find(params[:id])
                 render json: {status: 'SUCESS', message: 'Tag carregada', data:tag}, status: :ok
             end
 
-            #Criar nova tag
             def create
 				tag = Tag.new(tag_params)
 				if tag.save
@@ -23,14 +21,12 @@ module Api
 				end
             end
             
-            # Excluir tag
 			def destroy
 				tag = Tag.find(params[:id])
 				tag.destroy
 				render json: {status: 'SUCCESS', message:'Tag deletada', data:tag},status: :ok
             end
             
-            # Atualizar tag
             def update
                 tag = Tag.find(params[:id])
                 if tag.update_attributes(tag_params)
@@ -40,7 +36,6 @@ module Api
                 end
             end
             
-            # Parametros aceitos
 			private
 			def tag_params
 				params.permit(:titulo, :cor)
