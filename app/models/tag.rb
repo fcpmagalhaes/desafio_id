@@ -1,4 +1,3 @@
 class Tag < ApplicationRecord
-    validates :titulo, presence: true
-    validates :cor, presence: true
+    validates :label, :color, presence: true
 end

@@ -5,16 +5,25 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+User.create({
+    email: 'desafio@desafio.com',
+    password: 'desafio123'
+})
+
 5.times do
-    Cliente.create({
-        nome: Faker::Name.name,
-        email: Faker::Internet.email
+    Client.create({
+        name: Faker::Name.name,
+        email: Faker::Internet.email,
+        user_id: 1
     })
 end
 
 5.times do
     Tag.create({
-        titulo: Faker::University.name,
-        cor: Faker::Color.hex_color
+        label: Faker::University.name,
+        color: Faker::Color.hex_color
     })
 end
+
+

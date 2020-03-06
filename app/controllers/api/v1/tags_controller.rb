@@ -1,6 +1,6 @@
 module Api
     module V1
-        class TagsController < ApplicationController
+        class TagsController < Api::V1::ApiController
             
             def index
                     tags = Tag.order('created_at DESC');
@@ -38,7 +38,7 @@ module Api
             
 			private
 			def tag_params
-				params.permit(:titulo, :cor)
+				params.permit(:label, :color)
 			end
         end
     end
