@@ -11,3 +11,10 @@
         email: Faker::Internet.email
     })
 end
+
+5.times do
+    Tag.create({
+        titulo: Faker::University.name,
+        cor: Faker::Color.hex_color
+    })
+end
