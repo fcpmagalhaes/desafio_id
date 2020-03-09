@@ -38,7 +38,7 @@ module Api
             
 			private
 			def tag_params
-				params.permit(:titulo, :cor)
+				params.permit(:label, :color)
 			end
         end
     end

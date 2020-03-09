@@ -1,28 +1,11 @@
 module Api
     module V1
-        class ClientesController < ApplicationController
+        class TagClientesController < ApplicationController
            
             def index
                     clientes = Cliente.order('created_at DESC');
-                    clientes.map do |cliente|
-                        if cliente.tags != []
-                            p cliente.tags
-                        end
-                    end
                     render json: {status: 'SUCESS', message: 'Clientes carregados', data:clientes}, status: :ok
             end
-            # def index
-            #     clientes = Cliente.order('created_at DESC');
-            #     tagsClients = []
-            #     clientes.map do |cliente|
-            #         if cliente.tags != []
-            #             tagsClients.push('idCliente' => cliente.id, 'tagsCliente' => cliente.tags)
-            #         end
-            #     end
-            #     p payloadClients = ['clientes' => clientes, 'tagsClients' => tagsClients]
-            #     render json: {status: 'SUCESS', message: 'Clientes carregados', data:payloadClients}, status: :ok
-            # end
-
 
             def show
                 cliente = Cliente.find(params[:id])
@@ -31,7 +14,7 @@ module Api
 
             def create
 				cliente = Cliente.new(cliente_params)
-                if cliente.save
+				if cliente.save
 					render json: {status: 'SUCCESS', message:'cliente salvo', data:cliente},status: :ok
 				else
 					render json: {status: 'ERROR', message:'cliente não salvo', data:cliente.errors},status: :unprocessable_entity

@@ -14,7 +14,7 @@ end
 
 5.times do
     Tag.create({
-        titulo: Faker::University.name,
-        cor: Faker::Color.hex_color
+        label: Faker::University.name,
+        color: Faker::Color.hex_color
     })
 end
