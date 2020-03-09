@@ -2,44 +2,39 @@ module Api
     module V1
         class TagClientesController < ApplicationController
            
-            def index
-                    clientes = Cliente.order('created_at DESC');
-                    render json: {status: 'SUCESS', message: 'Clientes carregados', data:clientes}, status: :ok
-            end
+            # def index
+            #         tag_clientes = TagCliente.order(:cliente_id);
+            #         render json: {status: 'SUCESS', message: 'Relacoes carregadas', data:tag_clientes}, status: :ok
+            # end
 
-            def show
-                cliente = Cliente.find(params[:id])
-                render json: {status: 'SUCESS', message: 'Cliente carregado', data:cliente}, status: :ok
-            end
-
-            def create
-				cliente = Cliente.new(cliente_params)
-				if cliente.save
-					render json: {status: 'SUCCESS', message:'cliente salvo', data:cliente},status: :ok
-				else
-					render json: {status: 'ERROR', message:'cliente não salvo', data:cliente.errors},status: :unprocessable_entity
-				end
-            end
+            # def create
+			# 	cliente = TagCliente.new(cliente_params)
+			# 	if cliente.save
+			# 		render json: {status: 'SUCCESS', message:'Relacao salvo', data:cliente},status: :ok
+			# 	else
+			# 		render json: {status: 'ERROR', message:'Relacao não salvo', data:cliente.errors},status: :unprocessable_entity
+			# 	end
+            # end
             
-			def destroy
-				cliente = Cliente.find(params[:id])
-				cliente.destroy
-				render json: {status: 'SUCCESS', message:'Cliente deletado', data:cliente},status: :ok
-            end
+			# def destroy
+			# 	cliente = TagCliente.find(params[:id])
+			# 	cliente.destroy
+			# 	render json: {status: 'SUCCESS', message:'Relacao deletado', data:cliente},status: :ok
+            # end
             
-            def update
-                cliente = Cliente.find(params[:id])
-                if cliente.update_attributes(cliente_params)
-                    render json: {status: 'SUCCESS', message:'cliente atualizado', data:cliente},status: :ok
-                else
-                    render json: {status: 'ERROR', message:'cliente não atualizado', data:cliente.errors},status: :unprocessable_entity
-                end
-            end
+            # def update
+            #     cliente = TagCliente.where("field_1 = ? AND field_2 = ?", params[:tag_id],  params[:search_string]params[:id] params[:id])
+            #     if cliente.update_attributes(cliente_params)
+            #         render json: {status: 'SUCCESS', message:'Relacao atualizado', data:cliente},status: :ok
+            #     else
+            #         render json: {status: 'ERROR', message:'Relacao não atualizado', data:cliente.errors},status: :unprocessable_entity
+            #     end
+            # end
             
-			private
-			def cliente_params
-				params.permit(:nome, :email)
-			end
+			# private
+			# def cliente_params
+			# 	params.permit(:tag_id, :cliente_id)
+			# end
         end
     end
 end

@@ -3,30 +3,26 @@ module Api
         class ClientesController < ApplicationController
            
             def index
-                    clientes = Cliente.order('created_at DESC');
-                    clientes.map do |cliente|
-                        if cliente.tags != []
-                            p cliente.tags
-                        end
+                clientes = Cliente.order('created_at DESC');
+                tagsClients = []
+                clientes.map do |cliente|
+                    if cliente.tags != []
+                        tagsClients.push('id' => cliente.id, 'tagsCliente' => cliente.tags)
                     end
-                    render json: {status: 'SUCESS', message: 'Clientes carregados', data:clientes}, status: :ok
+                end
+                payloadClients = {'clientes' => clientes, 'tagsClientes' => tagsClients}
+                render json: {status: 'SUCESS', message: 'Clientes carregados', data:payloadClients}, status: :ok
             end
-            # def index
-            #     clientes = Cliente.order('created_at DESC');
-            #     tagsClients = []
-            #     clientes.map do |cliente|
-            #         if cliente.tags != []
-            #             tagsClients.push('idCliente' => cliente.id, 'tagsCliente' => cliente.tags)
-            #         end
-            #     end
-            #     p payloadClients = ['clientes' => clientes, 'tagsClients' => tagsClients]
-            #     render json: {status: 'SUCESS', message: 'Clientes carregados', data:payloadClients}, status: :ok
-            # end
 
 
             def show
                 cliente = Cliente.find(params[:id])
-                render json: {status: 'SUCESS', message: 'Cliente carregado', data:cliente}, status: :ok
+                if cliente.tags != []
+                    payloadClient = {'cliente' => cliente, 'tagsCliente' => cliente.tags}
+                else 
+                    payloadClient = {'cliente' => cliente, 'tagsCliente' => []}
+                end
+                render json: {status: 'SUCESS', message: 'Cliente carregado', data:payloadClient}, status: :ok
             end
 
             def create
@@ -56,7 +52,7 @@ module Api
 			private
 			def cliente_params
 				params.permit(:nome, :email)
-			end
+            end
         end
     end
 end

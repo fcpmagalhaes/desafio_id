@@ -18,3 +18,17 @@ end
         color: Faker::Color.hex_color
     })
 end
+
+TagCliente.create([
+    {tag_id: 1 , cliente_id: 1},
+    {tag_id: 2 , cliente_id: 1},
+    {tag_id: 3 , cliente_id: 1},
+    {tag_id: 4 , cliente_id: 2},
+    {tag_id: 1 , cliente_id: 1},
+    {tag_id: 2 , cliente_id: 4},
+    {tag_id: 3 , cliente_id: 5},
+    {tag_id: 4 , cliente_id: 5},
+    {tag_id: 5 , cliente_id: 2}
+])
+
+
